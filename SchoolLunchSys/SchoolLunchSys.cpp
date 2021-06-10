@@ -126,6 +126,8 @@ void  menuPreview() {
 
 // ===== ^^ KEITH CODE SECTION ^^ =====
 
+
+// Added comment by lara
 int main()
 {
     int index;
