@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <stdlib.h>
 #include <string>
 using namespace std;
@@ -22,6 +23,7 @@ struct ParentAcc {
     string cardNum;
     string cardExpiry;
 
+    string parentID;
 };
 
 struct AdminAcc {
@@ -30,6 +32,15 @@ struct AdminAcc {
     int pinNum;
 };
 // ===== ^^ Write stuctures here ^^ =====
+
+void underLine(int x) {
+    int i;
+
+    for (i = 0; i < x; i++) {
+        cout << "-";
+    }
+    cout << endl;
+}
 
 // ===== vv LARA CODE SECTION vv =====
 void bulkDiscount() {
@@ -52,7 +63,7 @@ void contactDetails() {
     cout << "\n\nOffice Hours: 1pm - 5pm, Monday - Friday";
 }
 
-void ParentReg(ParentAcc* ptr) {
+string ParentReg(ParentAcc* ptr) {
     int num;
 
     cout << "\n\t\t\tRegistration\t\t\t" << endl;
@@ -77,18 +88,64 @@ loginpin:
     cin >> ptr->childName;
     cout << "\n\nChild's room number: ";
     cin >> ptr->childRoomNum;
-    cout << "\n\nCard Number (no spaces)";
+    cout << "\n\nCard Number (no spaces): ";
     cin >> ptr->cardNum;
-    cout << "\n\nCard Expiry Date (format as MM/YY)";
+    cout << "\n\nCard Expiry Date (format as MM/YY): ";
     cin >> ptr->cardExpiry;
+
+    ofstream outfile;
+    outfile.open("parentlogin.csv", ios::out);
+
+    outfile << ptr->parentID << ","
+        << ptr->firstName << ","
+        << ptr->lastName << ","
+        << ptr->pinNum << ","
+        << ptr->contactNum << ","
+        << ptr->childName << ","
+        << ptr->childRoomNum << ","
+        << ptr->cardNum << ","
+        << ptr->cardExpiry << endl;
+
+
+    outfile.close();
+
+ 
+    return ptr->parentID;
 }
 
-void parentLogin() {
+string parentLogin() {
+    string firstname, line, row, col1, col2, col3, col5, col6, col8, col9;
+    string a = "nothing";
+    int pin, col4, col7;
 
-}
+    cout << "\n\t\t\tLogin\t\t\t" << endl;
+    underLine(80);
 
-void LaraTestfunction() {
-    cout << "\nThis is a test!";
+    ifstream infile;
+    infile.open("parentlogin.csv", ios::in);
+
+    for (int i = 0; i < 3; i++) {
+        cout << "\nFirst name: ";
+        cin >> firstname;
+        cout << "\nPin: ";
+        cin >> pin;
+        while (getline(infile, row)) { //Searching through each row in the file for size by column
+            istringstream linestream(row);
+            linestream >> col1 >> col2 >> col3 >> col4 >> col5 >> col6 >> col7 >> col8 >> col9;
+            if (firstname == col2 && pin == col4) {
+                a = col1;
+                break;
+            }
+        }
+        cout << "\n\nWrong login information try again!\n";
+    }
+
+    if (a == "nothing") {
+        cout << "\n\nThe number of login attempts has been exceeded, try again another time.";
+    }
+
+    infile.close();
+    return a;
 }
 
 
@@ -96,19 +153,12 @@ void LaraTestfunction() {
 
 // ===== vv KEITH CODE SECTION vv =====
 // -- create underlines only --
-void underLine(int x) {
-    int i;
 
-    for (i = 0; i < x; i++) {
-        cout << "-";
-    }
-    cout << endl;
-}
 
 // -- menu preview CANNOT ORDER FROM HERE  --
 void  menuPreview() {
 
-    cout << "\n\t\t\Menu Preview\t\t\t" << endl;
+    cout << "\n\t\t\tMenu Preview\t\t\t" << endl;
     underLine(80);
 
     cout << "\n Sandwiches:" << endl;
@@ -128,22 +178,21 @@ void  menuPreview() {
 
 }
 
-void keithTest() {
-    cout << "this is keiths function!";
-}
-
-// -- this is a test to see if it will merge to dev //
 
 
 
-// Added comment by lara
+
+
+
+
 
 // ===== ^^ KEITH CODE SECTION ^^ =====
 
 int main()
 {
-    int index;
+    int index, a;
     int flag = 0;
+    string ID;
 
     struct ParentAcc Parent;
     struct ParentAcc* ptrParent;
@@ -163,7 +212,7 @@ MenuSelect:
     cout << "\t5.  Register a new account" << endl;
 
     cout << "\n\n";
-    keithTest();
+
 
     cout << "\n  Selection: ";
     cin >> index;
@@ -172,7 +221,7 @@ MenuSelect:
     case 1:
         menuPreview();
 
-        cout << "\n Enter 1 to return back to Main Menu: ";
+        cout << "\n\n\n Enter 1 to return back to Main Menu: ";
         cin >> flag;
 
         if (flag != 1) {   //find a way to make this loop if condition is not met (IN PROGRESS)
@@ -186,13 +235,13 @@ MenuSelect:
     case 2:
         bulkDiscount();
 
-        cout << "\n Enter 1 to return back to Main Menu: ";
+        cout << "\n\n\n Enter 1 to return back to Main Menu: ";
         cin >> flag;
-    redo:
+    redo1:
         if (flag != 1) {
             cout << "invalid input! Try again: ";
             cin >> flag;
-            goto redo;
+            goto redo1;
         }
         else {
             goto MenuSelect;
@@ -201,23 +250,30 @@ MenuSelect:
     case 3:
         contactDetails();
 
-        cout << "\n Enter 1 to return back to Main Menu: ";
+        cout << "\n\n\n Enter 1 to return back to Main Menu: ";
         cin >> flag;
-    redo:
+    redo2:
         if (flag != 1) {
             cout << "invalid input! Try again: ";
             cin >> flag;
-            goto redo;
+            goto redo2;
         }
         else {
             goto MenuSelect;
         }
         break;
     case 4:
-        parentLogin();
+        ID = parentLogin();
+        if (ID == "nothing") {
+            a = 0;
+        }
+        else {
+            a = 1;
+        }
         break;
     case 5:
-        ParentReg(ptrParent);
+        ID = ParentReg(ptrParent);
+        a = 1;
         //Have them go to parents log in menu screen once registered as they are technically logged in
         break;
     default:
@@ -225,7 +281,9 @@ MenuSelect:
         goto MenuSelect;
     }
 
-
-    LaraTestfunction();
+    while (a == 1) {
+        //Login Parent Screen
+    }
+ 
 
 }
