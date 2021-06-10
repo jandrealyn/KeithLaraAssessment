@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <stdlib.h>
 #include <string>
 using namespace std;
@@ -24,12 +25,27 @@ struct ParentAcc {
 
 };
 
+struct MenuItems {
+    string itemName;
+    float itemPrice;
+};
+
 struct AdminAcc {
     string firstName;
     string lastName;
     int pinNum;
 };
 // ===== ^^ Write stuctures here ^^ =====
+
+// -- create underlines only --
+void underLine(int x) {
+    int i;
+
+    for (i = 0; i < x; i++) {
+        cout << "-";
+    }
+    cout << endl;
+}
 
 // ===== vv LARA CODE SECTION vv =====
 void bulkDiscount() {
@@ -87,56 +103,75 @@ void parentLogin() {
 
 }
 
-void LaraTestfunction() {
-    cout << "\nThis is a test!";
-}
-
-
 // ===== ^^ LARA CODE SECTION ^^ =====
 
 // ===== vv KEITH CODE SECTION vv =====
-// -- create underlines only --
-void underLine(int x) {
+
+// -- menu preview CANNOT ORDER FROM HERE (IN PROGRESS)  --
+void  menuPreview() {
+    struct MenuItems menu[9];
+    struct MenuItems* ptrmenu = menu;
+
     int i;
 
-    for (i = 0; i < x; i++) {
-        cout << "-";
-    }
-    cout << endl;
-}
+    fstream outfile;
 
-// -- menu preview CANNOT ORDER FROM HERE  --
-void  menuPreview() {
-
+    outfile.open("menuItems.csv", ios::out);
     cout << "\n\t\t\Menu Preview\t\t\t" << endl;
+    underLine(80);
+        
+    outfile << "Ham Sandwich" << ","
+        << "4.50" << endl
+        << "Vegetarian Sandwich" << ","
+        << "5.00" << endl
+        << "Chicken and Avo" << ", "
+        << "6.50" << endl << endl
+        << "Steak and Cheese" << ", "
+        << "4.50" << endl
+        << "Butter Chicken" << "-, "
+        << "5.50" << endl
+        << "Mushroom and Cheese" << "-, "
+        << "6.50" << endl << endl
+        << "Cheese" << "-, "
+        << "4.50" << endl
+        << "Pepperoni" << "-, "
+        << "5.50" << endl
+        << "Veg (GF)" << "-, "
+        << "6.50" << endl;
+    outfile.close();
+
+    fstream infile;
+
+    infile.open("menuItems.csv", ios::in);
+    
+    string readData;
+    int itemPrice;
+    
+    cout << "Menu Items: \n\n";
+    while (getline(infile, readData)) {
+        cout << readData << endl;
+    }
+        
+    infile.close();
+
+    /*cout << "\n\t\t\Menu Preview\t\t\t" << endl;
     underLine(80);
 
     cout << "\n Sandwiches:" << endl;
     cout << "\n\tHam Sandwich              $4.50" << endl;
     cout << "\n\tVegetarian Sandwich       $5.00" << endl;
-    cout << "\n\tChicken and Avo           $5.50" << endl;
+    cout << "\n\tChicken and Avo           $6.50" << endl;
 
     cout << "\n Pies:" << endl;
     cout << "\n\tSteak and Cheese          $4.50" << endl;
-    cout << "\n\tButter Chicken            $4.50" << endl;
-    cout << "\n\tMushroom and Cheese       $4.50" << endl;
+    cout << "\n\tButter Chicken            $5.50" << endl;
+    cout << "\n\tMushroom and Cheese       $6.50" << endl;
 
     cout << "\n Pizza:" << endl;
     cout << "\n\tCheese                    $4.50" << endl;
-    cout << "\n\tPepperoni                 $4.50" << endl;
-    cout << "\n\tVeg (GF)                  $4.50" << endl;
-
+    cout << "\n\tPepperoni                 $5.50" << endl;
+    cout << "\n\tVeg (GF)                  $6.50" << endl;*/
 }
-
-void keithTest() {
-    cout << "this is keiths function!";
-}
-
-// -- this is a test to see if it will merge to dev //
-
-
-
-// Added comment by lara
 
 // ===== ^^ KEITH CODE SECTION ^^ =====
 
@@ -162,9 +197,6 @@ MenuSelect:
     cout << "\t4.  Login to your account" << endl;
     cout << "\t5.  Register a new account" << endl;
 
-    cout << "\n\n";
-    keithTest();
-
     cout << "\n  Selection: ";
     cin >> index;
 
@@ -188,11 +220,11 @@ MenuSelect:
 
         cout << "\n Enter 1 to return back to Main Menu: ";
         cin >> flag;
-    redo:
+    redo1:
         if (flag != 1) {
             cout << "invalid input! Try again: ";
             cin >> flag;
-            goto redo;
+            goto redo1;
         }
         else {
             goto MenuSelect;
@@ -203,11 +235,11 @@ MenuSelect:
 
         cout << "\n Enter 1 to return back to Main Menu: ";
         cin >> flag;
-    redo:
+    redo2:
         if (flag != 1) {
             cout << "invalid input! Try again: ";
             cin >> flag;
-            goto redo;
+            goto redo2;
         }
         else {
             goto MenuSelect;
@@ -225,7 +257,5 @@ MenuSelect:
         goto MenuSelect;
     }
 
-
-    LaraTestfunction();
 
 }
