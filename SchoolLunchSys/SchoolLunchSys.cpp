@@ -124,6 +124,10 @@ void  menuPreview() {
 
 }
 
+void keithTest() {
+    cout << "this is keiths function!";
+}
+
 // -- this is a test to see if it will merge to dev //
 
 
@@ -153,6 +157,9 @@ MenuSelect:
     cout << "\t3.  School Contact Details & Location" << endl;
     cout << "\t4.  Login to your account" << endl;
     cout << "\t5.  Register a new account" << endl;
+
+    cout << "\n\n";
+    keithTest();
 
     cout << "\n  Selection: ";
     cin >> index;
