@@ -87,6 +87,10 @@ void parentLogin() {
 
 }
 
+void LaraTestfunction() {
+    cout << "\nThis is a test!";
+}
+
 
 // ===== ^^ LARA CODE SECTION ^^ =====
 
@@ -213,5 +217,8 @@ MenuSelect:
         cout << "It seems your selection was invalid, please select one of the given options: " << endl;
         goto MenuSelect;
     }
+
+
+    LaraTestfunction();
 
 }
