@@ -3,3 +3,7 @@ C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\Sch
 C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(165,6): warning C4101: 'i': unreferenced local variable
 C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(198,6): warning C4101: 'itemPrice': unreferenced local variable
   SchoolLunchSys.vcxproj -> C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\x64\Debug\SchoolLunchSys.exe
+<<<<<<< HEAD
+=======
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(5201,5): error MSB3541: Files has invalid value "<<<<<<< HEAD". Illegal characters in path.
+>>>>>>> 82e8ca76a20b445c13288817363a286f167f127b
