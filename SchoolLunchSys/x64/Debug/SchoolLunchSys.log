@@ -1,5 +1,7 @@
 ﻿  SchoolLunchSys.cpp
-C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(170,10): warning C4129: 'M': unrecognized character escape sequence
-C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(165,6): warning C4101: 'i': unreferenced local variable
-C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(198,6): warning C4101: 'itemPrice': unreferenced local variable
+C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(171,13): warning C4129: 'M': unrecognized character escape sequence
+C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(166,9): warning C4101: 'i': unreferenced local variable
+C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(199,9): warning C4101: 'itemPrice': unreferenced local variable
+  LINK : C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\x64\Debug\SchoolLunchSys.exe not found or not built by the last incremental link; performing full link
   SchoolLunchSys.vcxproj -> C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\x64\Debug\SchoolLunchSys.exe
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(5201,5): error MSB3541: Files has invalid value "<<<<<<< HEAD". Illegal characters in path.
