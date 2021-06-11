@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 #include <stdlib.h>
 #include <string>
 using namespace std;
@@ -26,6 +27,11 @@ struct ParentAcc {
     string parentID;
 };
 
+struct MenuItems {
+    string itemName;
+    float itemPrice;
+};
+
 struct AdminAcc {
     string firstName;
     string lastName;
@@ -33,6 +39,7 @@ struct AdminAcc {
 };
 // ===== ^^ Write stuctures here ^^ =====
 
+// -- create underlines only --
 void underLine(int x) {
     int i;
 
@@ -152,11 +159,53 @@ string parentLogin() {
 // ===== ^^ LARA CODE SECTION ^^ =====
 
 // ===== vv KEITH CODE SECTION vv =====
-// -- create underlines only --
 
-
-// -- menu preview CANNOT ORDER FROM HERE  --
+// -- menu preview CANNOT ORDER FROM HERE (IN PROGRESS)  --
 void  menuPreview() {
+    struct MenuItems menu[9];
+    struct MenuItems* ptrmenu = menu;
+
+    int i;
+
+    fstream outfile;
+
+    outfile.open("menuItems.csv", ios::out);
+    cout << "\n\t\t\Menu Preview\t\t\t" << endl;
+    underLine(80);
+        
+    outfile << "Ham Sandwich" << ","
+        << "4.50" << endl
+        << "Vegetarian Sandwich" << ","
+        << "5.00" << endl
+        << "Chicken and Avo" << ", "
+        << "6.50" << endl << endl
+        << "Steak and Cheese" << ", "
+        << "4.50" << endl
+        << "Butter Chicken" << "-, "
+        << "5.50" << endl
+        << "Mushroom and Cheese" << "-, "
+        << "6.50" << endl << endl
+        << "Cheese" << "-, "
+        << "4.50" << endl
+        << "Pepperoni" << "-, "
+        << "5.50" << endl
+        << "Veg (GF)" << "-, "
+        << "6.50" << endl;
+    outfile.close();
+
+    fstream infile;
+
+    infile.open("menuItems.csv", ios::in);
+    
+    string readData;
+    int itemPrice;
+    
+    cout << "Menu Items: \n\n";
+    while (getline(infile, readData)) {
+        cout << readData << endl;
+    }
+        
+    infile.close();
 
     cout << "\n\t\t\tMenu Preview\t\t\t" << endl;
     underLine(80);
@@ -164,12 +213,12 @@ void  menuPreview() {
     cout << "\n Sandwiches:" << endl;
     cout << "\n\tHam Sandwich              $4.50" << endl;
     cout << "\n\tVegetarian Sandwich       $5.00" << endl;
-    cout << "\n\tChicken and Avo           $5.50" << endl;
+    cout << "\n\tChicken and Avo           $6.50" << endl;
 
     cout << "\n Pies:" << endl;
     cout << "\n\tSteak and Cheese          $4.50" << endl;
-    cout << "\n\tButter Chicken            $4.50" << endl;
-    cout << "\n\tMushroom and Cheese       $4.50" << endl;
+    cout << "\n\tButter Chicken            $5.50" << endl;
+    cout << "\n\tMushroom and Cheese       $6.50" << endl;
 
     cout << "\n Pizza:" << endl;
     cout << "\n\tCheese                    $4.50" << endl;

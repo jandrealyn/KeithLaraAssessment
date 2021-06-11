@@ -1,2 +1,9 @@
 ﻿  SchoolLunchSys.cpp
+<<<<<<< HEAD
+C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(120,13): warning C4129: 'M': unrecognized character escape sequence
+C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(115,9): warning C4101: 'i': unreferenced local variable
+C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\SchoolLunchSys.cpp(148,9): warning C4101: 'itemPrice': unreferenced local variable
+  SchoolLunchSys.vcxproj -> C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\x64\Debug\SchoolLunchSys.exe
+=======
   SchoolLunchSys.vcxproj -> C:\Users\270096195\OneDrive - UP Education\Desktop\CS103 Group Project\School System\KeithLaraAssessment\SchoolLunchSys\x64\Debug\SchoolLunchSys.exe
+>>>>>>> 78cc19d87e480a370433296b7e7fc48840dc81b3

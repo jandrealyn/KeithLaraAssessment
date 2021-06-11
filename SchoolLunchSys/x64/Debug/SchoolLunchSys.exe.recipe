@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
+      <FullPath>C:\Users\keith\OneDrive\Desktop\cppFolder\cloneCS103Repo\KeithLaraAssessment\SchoolLunchSys\x64\Debug\SchoolLunchSys.exe</FullPath>
+=======
       <FullPath>C:\Users\270096195\OneDrive - UP Education\Desktop\CS103 Group Project\School System\KeithLaraAssessment\SchoolLunchSys\x64\Debug\SchoolLunchSys.exe</FullPath>
+>>>>>>> 78cc19d87e480a370433296b7e7fc48840dc81b3
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
