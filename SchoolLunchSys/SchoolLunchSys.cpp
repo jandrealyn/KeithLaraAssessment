@@ -204,23 +204,6 @@ void  menuPreview() {
 
 	infile.close();
 
-	cout << "\n\t\t\tMenu Preview\t\t\t" << endl;
-	underLine(80);
-
-	cout << "\n Sandwiches:" << endl;
-	cout << "\n\tHam Sandwich              $4.50" << endl;
-	cout << "\n\tVegetarian Sandwich       $5.00" << endl;
-	cout << "\n\tChicken and Avo           $6.50" << endl;
-
-	cout << "\n Pies:" << endl;
-	cout << "\n\tSteak and Cheese          $4.50" << endl;
-	cout << "\n\tButter Chicken            $5.50" << endl;
-	cout << "\n\tMushroom and Cheese       $6.50" << endl;
-
-	cout << "\n Pizza:" << endl;
-	cout << "\n\tCheese                    $4.50" << endl;
-	cout << "\n\tPepperoni                 $4.50" << endl;
-	cout << "\n\tVeg (GF)                  $4.50" << endl;
 }
 
 // ===== ^^ KEITH CODE SECTION ^^ =====
