@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <stdlib.h>
 #include <string>
@@ -23,6 +24,7 @@ struct ParentAcc {
     string cardNum;
     string cardExpiry;
 
+    string parentID;
 };
 
 struct MenuItems {
@@ -68,7 +70,7 @@ void contactDetails() {
     cout << "\n\nOffice Hours: 1pm - 5pm, Monday - Friday";
 }
 
-void ParentReg(ParentAcc* ptr) {
+string ParentReg(ParentAcc* ptr) {
     int num;
 
     cout << "\n\t\t\tRegistration\t\t\t" << endl;
@@ -93,15 +95,66 @@ loginpin:
     cin >> ptr->childName;
     cout << "\n\nChild's room number: ";
     cin >> ptr->childRoomNum;
-    cout << "\n\nCard Number (no spaces)";
+    cout << "\n\nCard Number (no spaces): ";
     cin >> ptr->cardNum;
-    cout << "\n\nCard Expiry Date (format as MM/YY)";
+    cout << "\n\nCard Expiry Date (format as MM/YY): ";
     cin >> ptr->cardExpiry;
+
+    ofstream outfile;
+    outfile.open("parentlogin.csv", ios::out);
+
+    outfile << ptr->parentID << ","
+        << ptr->firstName << ","
+        << ptr->lastName << ","
+        << ptr->pinNum << ","
+        << ptr->contactNum << ","
+        << ptr->childName << ","
+        << ptr->childRoomNum << ","
+        << ptr->cardNum << ","
+        << ptr->cardExpiry << endl;
+
+
+    outfile.close();
+
+ 
+    return ptr->parentID;
 }
 
-void parentLogin() {
+string parentLogin() {
+    string firstname, line, row, col1, col2, col3, col5, col6, col8, col9;
+    string a = "nothing";
+    int pin, col4, col7;
 
+    cout << "\n\t\t\tLogin\t\t\t" << endl;
+    underLine(80);
+
+    ifstream infile;
+    infile.open("parentlogin.csv", ios::in);
+
+    for (int i = 0; i < 3; i++) {
+        cout << "\nFirst name: ";
+        cin >> firstname;
+        cout << "\nPin: ";
+        cin >> pin;
+        while (getline(infile, row)) { //Searching through each row in the file for size by column
+            istringstream linestream(row);
+            linestream >> col1 >> col2 >> col3 >> col4 >> col5 >> col6 >> col7 >> col8 >> col9;
+            if (firstname == col2 && pin == col4) {
+                a = col1;
+                break;
+            }
+        }
+        cout << "\n\nWrong login information try again!\n";
+    }
+
+    if (a == "nothing") {
+        cout << "\n\nThe number of login attempts has been exceeded, try again another time.";
+    }
+
+    infile.close();
+    return a;
 }
+
 
 // ===== ^^ LARA CODE SECTION ^^ =====
 
@@ -154,7 +207,7 @@ void  menuPreview() {
         
     infile.close();
 
-    /*cout << "\n\t\t\Menu Preview\t\t\t" << endl;
+    cout << "\n\t\t\tMenu Preview\t\t\t" << endl;
     underLine(80);
 
     cout << "\n Sandwiches:" << endl;
@@ -169,16 +222,26 @@ void  menuPreview() {
 
     cout << "\n Pizza:" << endl;
     cout << "\n\tCheese                    $4.50" << endl;
-    cout << "\n\tPepperoni                 $5.50" << endl;
-    cout << "\n\tVeg (GF)                  $6.50" << endl;*/
+    cout << "\n\tPepperoni                 $4.50" << endl;
+    cout << "\n\tVeg (GF)                  $4.50" << endl;
+
 }
+
+
+
+
+
+
+
+
 
 // ===== ^^ KEITH CODE SECTION ^^ =====
 
 int main()
 {
-    int index;
+    int index, a;
     int flag = 0;
+    string ID;
 
     struct ParentAcc Parent;
     struct ParentAcc* ptrParent;
@@ -197,6 +260,9 @@ MenuSelect:
     cout << "\t4.  Login to your account" << endl;
     cout << "\t5.  Register a new account" << endl;
 
+    cout << "\n\n";
+
+
     cout << "\n  Selection: ";
     cin >> index;
 
@@ -204,7 +270,7 @@ MenuSelect:
     case 1:
         menuPreview();
 
-        cout << "\n Enter 1 to return back to Main Menu: ";
+        cout << "\n\n\n Enter 1 to return back to Main Menu: ";
         cin >> flag;
 
         if (flag != 1) {   //find a way to make this loop if condition is not met (IN PROGRESS)
@@ -218,7 +284,7 @@ MenuSelect:
     case 2:
         bulkDiscount();
 
-        cout << "\n Enter 1 to return back to Main Menu: ";
+        cout << "\n\n\n Enter 1 to return back to Main Menu: ";
         cin >> flag;
     redo1:
         if (flag != 1) {
@@ -233,7 +299,7 @@ MenuSelect:
     case 3:
         contactDetails();
 
-        cout << "\n Enter 1 to return back to Main Menu: ";
+        cout << "\n\n\n Enter 1 to return back to Main Menu: ";
         cin >> flag;
     redo2:
         if (flag != 1) {
@@ -246,10 +312,17 @@ MenuSelect:
         }
         break;
     case 4:
-        parentLogin();
+        ID = parentLogin();
+        if (ID == "nothing") {
+            a = 0;
+        }
+        else {
+            a = 1;
+        }
         break;
     case 5:
-        ParentReg(ptrParent);
+        ID = ParentReg(ptrParent);
+        a = 1;
         //Have them go to parents log in menu screen once registered as they are technically logged in
         break;
     default:
@@ -257,5 +330,9 @@ MenuSelect:
         goto MenuSelect;
     }
 
+    while (a == 1) {
+        //Login Parent Screen
+    }
+ 
 
 }
